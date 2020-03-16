@@ -66,19 +66,26 @@
           >登录</el-button>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary">注册</el-button>
+          <el-button
+            type="primary"
+            @click="onRegister"
+          >注册</el-button>
         </el-form-item>
       </el-form>
     </div>
+
     <img
       class="rightimg"
       src="../../assets/login_banner_ele.png"
       alt=""
     >
+
+    <register ref="register"></register>
   </div>
 </template>
 
 <script>
+import register from "./components/register";
 export default {
   data() {
     return {
@@ -101,7 +108,7 @@ export default {
           {
             type: "array",
             required: true,
-            message: "请至少选择一个活动性质",
+            message: "请先仔细阅读用户协议和隐私条款",
             trigger: "change"
           }
         ]
@@ -120,7 +127,13 @@ export default {
           this.$message.error("fail");
         }
       });
+    },
+    onRegister() {
+      this.$refs.register.dialogFormVisible = true
     }
+  },
+  components: {
+    register
   }
 };
 </script>
